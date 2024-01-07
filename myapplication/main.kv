@@ -1,0 +1,12 @@
+#:import SoundLoader kivy.core.audio.SoundLoader
+
+BoxLayout:
+    Image:
+        source: "asset/test.png"
+    Button:
+        text: "Play Sound"
+        on_press: self._sound.play()
+        _sound: SoundLoader.load("asset/test.wav")
+    Button:
+        text: "Secret Magic"
+        on_press: self.text = app.secret_stuff()
