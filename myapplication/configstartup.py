@@ -10,7 +10,6 @@ from metadata import app_icon
 configstartup.py is for initial setup of the environment
 
 This file MUST be imported at the top of the 'main' executable file.  
- 
 """
 
 Config.set('kivy', 'window_icon', app_icon)
