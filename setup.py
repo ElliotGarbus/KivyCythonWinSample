@@ -5,6 +5,8 @@ from Cython.Build import cythonize
 # > python setup.py build_ext --inplace
 # to build the cython files to object files
 
+# todo: set c compiler flags
+
 setup(
     name='My Library',
     ext_modules=cythonize("mylibrary/**/*.pyx"),
