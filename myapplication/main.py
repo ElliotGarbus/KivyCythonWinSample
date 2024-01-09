@@ -1,27 +1,18 @@
-import configstartup
+import configstartup  # must load before kivy, sets env vars/config
 from kivy.app import App
 from kivy.lang import Builder
+from metadata import app_icon, company, app_name, app_version
 
-# FIXME: Need a real solution for "import mylibrary" here
-# In the Cython/Pyinstaller example it seems the approach is
-# to make everything installable package, but I don't know
-# if it's the best approach. Adapt as needed.
 from mylibrary import ProprietaryClass
 from mylibrary.subdir import MyLib_Constants
 
 
 class ProprietaryApp(App):
     def build(self):
-        self.icon = "asset/cropped cactus 64x64.png"
+        self.icon = app_icon
+        self.title = f'{app_name} v{app_version}'
         self._secret = ProprietaryClass()
-        # EVALUATE: Ideally this metadata does not need to be hardcoded, but
-        # can be obtained from the build system. For example generate a .py
-        # file, or supply the values via os.environ[], or some other solution.
-        # If this can't be practically accomplished, communicate the 
-        company = "MyCompany"
-        appname = "MyApplication"
-        appversion = 1.0
-        print(f"Config file path: %AppData%/{company}/{appname}/v{appversion}/config.json")
+        print(f"Config file path: %AppData%/{company}/{app_name}/v{app_version}/config.json")
         print(f"Library constants: {MyLib_Constants}")
         return Builder.load_file("main.kv")
 
