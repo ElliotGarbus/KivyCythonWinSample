@@ -13,7 +13,7 @@ from mylibrary.subdir import MyLib_Constants
 class ProprietaryApp(App):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._secret = None  #  secret lib object
+        self._secret = None  # secret lib object
         self._data_dir = None  # caches the path to the data directory
 
     def build(self):
