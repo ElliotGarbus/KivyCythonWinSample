@@ -16,6 +16,7 @@
       - 3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]
       - See the table in the middle of the page: https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B 
 This corresponds to runtime library version 14.37.32822
+* Install Pyinstaller: pip install pyinstaller 
 * Download and install Inno Setup: https://jrsoftware.org/isdl.php#stable
 
 ## To build the cython code

@@ -1,7 +1,7 @@
 import configstartup  # must load before kivy, sets env vars/config
 from kivy.app import App
 from kivy.lang import Builder
-from metadata import app_icon, company, app_name, app_version
+from metadata import app_icon, company, app_name, app_version, app_name_version
 
 from pathlib import Path
 import os
@@ -18,7 +18,7 @@ class ProprietaryApp(App):
 
     def build(self):
         self.icon = app_icon
-        self.title = f'{app_name} v{app_version}'
+        self.title = app_name_version
         self._secret = ProprietaryClass()
         print(f"Config file path: %AppData%/{company}/{app_name}/v{app_version}/config.json")
         print(f"Library constants: {MyLib_Constants}")
