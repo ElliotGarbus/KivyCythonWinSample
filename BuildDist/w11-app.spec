@@ -1,18 +1,22 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-from kivy_deps import sdl2, glew
-# from myapplication.metadata import app_name_version, app_icon
+import sys
+sys.path.append('..')
+
+from kivy_deps import sdl2, glew, gstreamer
+from myapplication.metadata import app_name_version, app_icon
 from pathlib import Path
 
 name = 'My App Name' #app_name_version
-win_icon = 'C:\\Users\\ellio\\PycharmProjects\\KivyCythonWinSample\\myapplication\\asset\\cropped-cactus-512x512.ico' #Path('../myapplication') / app_icon
+win_icon = Path('../myapplication') / app_icon
+print(f'{win_icon=}')
 
 a = Analysis(
-    ['../myapplication/trypi.py'],
+    ['../myapplication/main.py'],
     pathex=[],
     binaries=[],
-    datas=[('../myapplication/asset/*.*', './myapplication/asset'),
-           ('../myapplication/*.kv', './myapplication')],
+    datas=[('../myapplication/asset/*.*', './asset'),
+           ('../myapplication/*.kv', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -33,18 +37,19 @@ exe = EXE(
     strip=False,
     upx=False,
     console=False,
-    icon=win_icon,
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    contents_directory='.',
+    icon=[win_icon],
 )
 coll = COLLECT(
     exe,
     a.binaries,
     a.datas,
-    *[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins)],
+    *[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins + gstreamer.dep_bins)],
     strip=False,
     upx=False,
     upx_exclude=[],
