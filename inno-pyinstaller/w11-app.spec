@@ -10,13 +10,24 @@ from pathlib import Path
 name = app_name_version
 win_icon = Path('../myapplication') / app_icon
 
+"""
+The data files for the application are put in a list of tuples.  As you develop the program,
+you may need to edit this list.  This is a list of tuples listing the source file and the
+destination directory in the bundle.
+This is documented here: https://pyinstaller.org/en/stable/spec-files.html?highlight=datas#adding-data-files
+Note that data_files is used to set "datas".
+"""
+
+data_files = [('../myapplication/asset/*.*', './asset'),
+              ('../myapplication/*.kv', '.')]
+
+
 
 a = Analysis(
     ['../myapplication/main.py'],
     pathex=[],
     binaries=[],
-    datas=[('../myapplication/asset/*.*', './asset'),
-           ('../myapplication/*.kv', '.')],
+    datas=data_files,
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
