@@ -1,5 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+# TODO: set optimization flag for python compiles
 import sys
 sys.path.append('..')
 
