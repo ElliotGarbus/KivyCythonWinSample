@@ -1,7 +1,6 @@
 import configstartup  # must load before kivy, sets env vars/config
 from kivy.app import App
 from kivy.lang import Builder
-from kivy.logger import Logger
 from metadata import app_icon, company, app_name, app_version, app_name_version
 
 from pathlib import Path
@@ -25,10 +24,6 @@ class ProprietaryApp(App):
         print(f"Config file path: %AppData%/{company}/{app_name}/v{app_version}/config.json")
         print(f"Library constants: {MyLib_Constants}")
         print(f'{self.data_dir=}')
-        # Logger.info(f'{os.getcwd()=}')  # used to debug specfile
-        # Logger.info(f'{__file__=}')
-        # p = Path(__file__).parent
-        # os.chdir(p)
         return Builder.load_file('main.kv')
 
     def secret_stuff(self):
