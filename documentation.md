@@ -7,8 +7,8 @@
 * Install Cython 3.0.7: pip install cython 
 * Download MSVC compiler, 2022 MSVC w/ C++ community edition.
     - Go to: https://visualstudio.microsoft.com/vs/features/cplusplus/
-        - Select Download Visual Studio with C++ 
-    - Select Community edition, download and install. 
+        - Select Download Visual Studio with C++
+    - Select Community edition, download and install.
     - There is an option to download without the IDE:  https://visualstudio.microsoft.com/visual-cpp-build-tools/
     - Just for Reference, no action required: To determine the appropriate version of the C++ compiler: 
       - run: python -c "import sys; print(sys.version)"
@@ -33,6 +33,15 @@ from the inno-pyinstaller directory run:
 ```commandline
 pyinstaller -y .\w11-app.spec
 ```
+
+To do a release build with the python option -OO specified, disabling asserts
+and removing docstrings run the following from the inno-pyinstaller directory:
+```commandline
+python -OO  -m PyInstaller --clean -y .\w11-app.spec
+```
+Warning: If the module cffi is used, this solution will not work.  
+See: https://github.com/pyinstaller/pyinstaller/issues/8252
+
 
 It is very likely you will need to edit the specfile. The pyinstaller spec file is python code.
 The data files for the application are put in a list of tuples. As you develop the program,

@@ -6,7 +6,6 @@ from metadata import app_icon, company, app_name, app_version, app_name_version
 from pathlib import Path
 import os
 
-
 from mylibrary import ProprietaryClass
 from mylibrary.subdir import MyLib_Constants
 
@@ -36,7 +35,7 @@ class ProprietaryApp(App):
     def _get_data_dir(self):
         """
         Returns a path object to the app data directory
-        %AppData%/{company}/{app_name}/v{app_version}/config.json"
+        %AppData%/{company}/{app_name}/v{app_version}/config.json
         use the property App.data_dir
         """
         win_app_data = os.getenv('APPDATA')
