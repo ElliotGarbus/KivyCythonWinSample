@@ -4,7 +4,8 @@
 * Download and install python 3.12.1 from https://www.python.org/downloads/
 * Create a virtual environment.
 * Install Kivy version 2.3.0: python -m pip install "kivy[full]"
-* Install Cython 3.0.7: pip install cython 
+* Install Cython 3.0.7: pip install cython
+* Install pywin32: pip install pywin32
 * Download MSVC compiler, 2022 MSVC w/ C++ community edition.
     - Go to: https://visualstudio.microsoft.com/vs/features/cplusplus/
         - Select Download Visual Studio with C++

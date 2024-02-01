@@ -1,1 +1,1 @@
-Contains pyinstaller files and inno setup files for creating the exe(s) and installers.
+This directory contains pyinstaller files and inno setup files for creating the exe(s) and installers.
