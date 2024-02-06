@@ -9,9 +9,9 @@
 import sys
 import time
 
-import win32serviceutil  # ServiceFramework and commandline helper
-import win32service  # Events
 import servicemanager  # Simple setup and logging
+import win32service  # Events
+import win32serviceutil  # ServiceFramework and commandline helper
 
 # FIXME: Need a real solution for "import mylibrary" here
 # In the Cython/Pyinstaller example it seems the approach is
@@ -21,8 +21,10 @@ sys.path.insert(0, "..")
 from mylibrary import ProprietaryClass
 from mylibrary.subdir import MyLib_Constants
 
+
 class MyService:
     """Silly little application stub"""
+
     def stop(self):
         """Stop the service"""
         self.running = False
@@ -36,8 +38,8 @@ class MyService:
             secret_result = secret.hello_world()
             servicemanager.LogInfoMsg(f"{secret_result} {MyLib_Constants}")
 
-class MyServiceFramework(win32serviceutil.ServiceFramework):
 
+class MyServiceFramework(win32serviceutil.ServiceFramework):
     _svc_name_ = 'MyService'
     _svc_display_name_ = 'My Service display name'
 
@@ -63,6 +65,7 @@ def init():
         servicemanager.StartServiceCtrlDispatcher()
     else:
         win32serviceutil.HandleCommandLine(MyServiceFramework)
+
 
 if __name__ == '__main__':
     init()
