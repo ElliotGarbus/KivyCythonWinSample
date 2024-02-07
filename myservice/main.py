@@ -13,11 +13,9 @@ import servicemanager  # Simple setup and logging
 import win32service  # Events
 import win32serviceutil  # ServiceFramework and commandline helper
 
-# FIXME: Need a real solution for "import mylibrary" here
-# In the Cython/Pyinstaller example it seems the approach is
-# to make everything installable package, but I don't know
-# if it's the best approach. Adapt as needed.
+
 sys.path.insert(0, "..")
+
 from mylibrary import ProprietaryClass
 from mylibrary.subdir import MyLib_Constants
 
