@@ -8,7 +8,7 @@ a = Analysis(
     pathex=[],
     binaries=[],
     datas=[],
-    hiddenimports=[],
+    hiddenimports=['mylibrary', 'win32timezone'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
@@ -41,7 +41,7 @@ coll = COLLECT(
     a.binaries,
     a.datas,
     strip=False,
-    upx=True,
+    upx=False,
     upx_exclude=[],
     name=name,
 )
