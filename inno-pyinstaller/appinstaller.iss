@@ -22,7 +22,7 @@ AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\My Company
-DisableDirPage=yes
+DisableDirPage=no
 ChangesAssociations=yes
 DisableProgramGroupPage=yes
 LicenseFile=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\LICENSE
@@ -34,7 +34,8 @@ SetupIconFile=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\myapplication\a
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
-
+WizardSmallImageFile=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\myapplication\asset\small_installer_image_138x140.bmp
+WizardImageFile=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\myapplication\asset\big_installer_image_410x797.bmp
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
