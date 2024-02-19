@@ -1,7 +1,13 @@
 # -*- mode: python ; coding: utf-8 -*-
+import sys
+sys.path.append('..')
 
-#todo create meta data for service-name-version
-name = "service-name-version"
+from myapplication.metadata import service_name, service_icon
+from pathlib import Path
+
+
+name = service_name
+win_icon = Path('../myapplication') / service_icon
 
 a = Analysis(
     ['..\\myservice\\main.py'],
@@ -33,7 +39,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='NONE',
+    icon=[win_icon],
     contents_directory='.',
 )
 coll = COLLECT(
