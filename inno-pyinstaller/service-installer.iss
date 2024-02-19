@@ -18,7 +18,7 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={autopf}\My Company
+DefaultDirName={autopf}\MyCompany\MyService
 DisableProgramGroupPage=yes
 LicenseFile=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\LICENSE
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
