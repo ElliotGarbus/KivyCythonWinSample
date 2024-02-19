@@ -24,7 +24,7 @@ LicenseFile=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\LICENSE
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 OutputDir=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\inno-pyinstaller
-OutputBaseFilename=serviceinstaller
+OutputBaseFilename=service-installer
 SetupIconFile=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\myapplication\asset\cropped-cactus-512x512.ico
 Compression=lzma
 SolidCompression=yes
