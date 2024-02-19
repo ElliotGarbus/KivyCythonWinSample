@@ -5,7 +5,7 @@
 #define MyAppVersion "0.0"
 #define MyAppPublisher "My Company"
 #define MyAppURL "https://www.my-website.com/"
-#define MyAppExeName "MyApplication v1.0.exe"
+#define MyAppExeName "MyApplication"
 #define MyAppAssocName ""
 #define MyAppAssocExt ""
 #define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt

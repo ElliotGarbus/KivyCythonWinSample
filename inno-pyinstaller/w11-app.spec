@@ -4,10 +4,10 @@ import sys
 sys.path.append('..')
 
 from kivy_deps import sdl2, glew, gstreamer
-from myapplication.metadata import app_name_version, app_icon
+from myapplication.metadata import app_name, app_icon
 from pathlib import Path
 
-name = app_name_version
+name = app_name
 win_icon = Path('../myapplication') / app_icon
 
 """
