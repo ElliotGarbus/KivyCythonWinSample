@@ -5,10 +5,12 @@
 #define MyAppName "My Application"
 #define MyAppVersion "0.0"
 #define MyAppExeName "MyApplication.exe"
+#define AppDir "Application"
 
 #define MySvcName "MyService"
 #define MySvcVersion "0.0"
 #define MyAppExeName "MyService.exe"
+#define ServiceDir "Service"
 
 #define MyAppPublisher "My Company, Inc."
 #define MyAppURL "https://www.example.com/"
@@ -25,7 +27,7 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={autopf}\MyCompany\MyApp
+DefaultDirName={autopf}\MyCompany
 DisableProgramGroupPage=yes
 LicenseFile=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\LICENSE
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
@@ -53,32 +55,33 @@ Name: "service"; Description: "Windows Service Files"; Types: full service-only
 
 
 [Tasks]
-Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; Components: full app-only
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; Components: application
 
 [Files]
 ; Application Files
-Source: "C:\Users\ellio\PycharmProjects\KivyCythonWinSample\inno-pyinstaller\dist\MyApplication\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion; Components: application
-Source: "C:\Users\ellio\PycharmProjects\KivyCythonWinSample\inno-pyinstaller\dist\MyApplication\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: application
+Source: "C:\Users\ellio\PycharmProjects\KivyCythonWinSample\inno-pyinstaller\dist\MyApplication\{#MyAppExeName}"; DestDir: "{app}\{#AppDir}"; Flags: ignoreversion; Components: application
+Source: "C:\Users\ellio\PycharmProjects\KivyCythonWinSample\inno-pyinstaller\dist\MyApplication\*"; DestDir: "{app}\{#AppDir}"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: application
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 ; Service Files
-Source: "C:\Users\ellio\PycharmProjects\KivyCythonWinSample\pyinstaller-service\dist\MyService\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion; Components: service 
-Source: "C:\Users\ellio\PycharmProjects\KivyCythonWinSample\pyinstaller-service\dist\MyService\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: service 
+Source: "C:\Users\ellio\PycharmProjects\KivyCythonWinSample\pyinstaller-service\dist\MyService\{#MySvcExeName}"; DestDir: "{app}\{#ServiceDir}"; Flags: ignoreversion; Components: service 
+Source: "C:\Users\ellio\PycharmProjects\KivyCythonWinSample\pyinstaller-service\dist\MyService\*"; DestDir: "{app}\{#ServiceDir}"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: service 
 
 
 [Icons]
-Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Components: application
-Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon; Components: application
-Name: "{autoprograms}\{#MySvcName}"; Filename: "{app}\{#MySvcExeName}"; Components: service
+Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#AppDir}\{#MyAppExeName}"; Components: application
+Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#AppDir}\{#MyAppExeName}"; Tasks: desktopicon; Components: application
+Name: "{autoprograms}\{#MySvcName}"; Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Components: service
 
 [Run]
-Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent; Components: application
-Filename: "{app}\{#MyAppExeName}"; Parameters: "install"; Description: "Register the Service"; Flags: runascurrentuser postinstall; Components: service
+Filename: "{app}\{#AppDir}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent; Components: application
+Filename: "{app}\{#AppDir}\{#MyAppExeName}"; Parameters: "install"; Description: "Register the Service"; Flags: runascurrentuser postinstall; Components: service
 
 
 ; TODO: check destination dirs for app and service
 ; TODO: And run unninstall to revome service
 ; TODO: Set DefaultGroupName
 ; TODO add Parameter for Service ICON to bring up UI
+; TODO set service parameter intall and start service
 
 
 
