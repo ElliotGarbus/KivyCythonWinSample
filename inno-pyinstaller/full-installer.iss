@@ -74,14 +74,14 @@ Name: "{autoprograms}\{#MySvcName}"; Filename: "{app}\{#ServiceDir}\{#MySvcExeNa
 
 [Run]
 Filename: "{app}\{#AppDir}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent; Components: application
-Filename: "{app}\{#AppDir}\{#MyAppExeName}"; Parameters: "install"; Description: "Register the Service"; Flags: runascurrentuser postinstall; Components: service
+Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "--startup delayed install"; Description: "Register the Service"; Flags: runascurrentuser postinstall; Components: service
 
 
 ; TODO: check destination dirs for app and service
-; TODO: And run unninstall to revome service
-; TODO: Set DefaultGroupName
+; TODO: And run unninstall to stop and remove service
+; TODO: Set DefaultGroupName confirm icons under group
 ; TODO add Parameter for Service ICON to bring up UI
-; TODO set service parameter intall and start service
+; TODO start service
 
 
 
