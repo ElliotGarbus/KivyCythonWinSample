@@ -9,7 +9,7 @@
 
 #define MySvcName "MyService"
 #define MySvcVersion "0.0"
-#define MyAppExeName "MyService.exe"
+#define MySvcExeName "MyService.exe"
 #define ServiceDir "Service"
 
 #define MyAppPublisher "My Company, Inc."
