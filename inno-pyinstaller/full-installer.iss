@@ -12,6 +12,7 @@
 #define MySvcExeName "MyService.exe"
 #define ServiceDir "Service"
 
+#define StartUpMenuGroup "My Company"
 #define MyAppPublisher "My Company, Inc."
 #define MyAppURL "https://www.example.com/"
 
@@ -28,10 +29,11 @@ AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\MyCompany
-DisableProgramGroupPage=yes
+DefaultGroupName={#StartUpMenuGroup}
+DisableProgramGroupPage=Yes
 LicenseFile=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\LICENSE
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
-;PrivilegesRequired=lowest
+; PrivilegesRequired=lowest
 OutputDir=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\inno-pyinstaller
 OutputBaseFilename=full-installer
 SetupIconFile=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\myapplication\asset\cropped-cactus-512x512.ico
@@ -56,6 +58,8 @@ Name: "service"; Description: "Windows Service Files"; Types: full service-only
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; Components: application
+Name: "registerservice"; Description:"Register Service with OS"; GroupDescription:"Register Windows Service";    Components: service  
+
 
 [Files]
 ; Application Files
@@ -70,18 +74,19 @@ Source: "C:\Users\ellio\PycharmProjects\KivyCythonWinSample\pyinstaller-service\
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#AppDir}\{#MyAppExeName}"; Components: application
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#AppDir}\{#MyAppExeName}"; Tasks: desktopicon; Components: application
-Name: "{autoprograms}\{#MySvcName}"; Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Components: service
+Name: "{autoprograms}\{#MySvcName} Configuration"; Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "--config-ui"; Components: service
 
 [Run]
 Filename: "{app}\{#AppDir}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent; Components: application
-Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "--startup delayed install"; Description: "Register the Service"; Flags: runascurrentuser postinstall; Components: service
+Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "--startup delayed install"; Description: "Register the Service"; Flags: runascurrentuser postinstall; Components: service; Tasks: registerservice;
+
+[UninstallRun]
+Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "remove"; Components: service
 
 
 ; TODO: check destination dirs for app and service
-; TODO: And run unninstall to stop and remove service
-; TODO: Set DefaultGroupName confirm icons under group
-; TODO add Parameter for Service ICON to bring up UI
 ; TODO start service
+; TODO Default to install for current user only (provide option to install for all users if it's trivial) Pending TS response
 
 
 
