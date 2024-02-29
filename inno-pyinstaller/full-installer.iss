@@ -79,12 +79,14 @@ Name: "{autoprograms}\{#MySvcName} Configuration"; Filename: "{app}\{#ServiceDir
 [Run]
 Filename: "{app}\{#AppDir}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent; Components: application
 Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "--startup delayed install"; Description: "Register the Service"; Flags: runascurrentuser postinstall; Components: service; Tasks: registerservice;
+; Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "start"; Description: "Start the Service"; Flags: runascurrentuser postinstall; Components: service; Tasks: registerservice;
+; todo: start service
 
 [UninstallRun]
+Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "stop"; Components: service
 Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "remove"; Components: service
 
-
-; TODO: check destination dirs for app and service
+; todo create icon folder in start menu
 ; TODO start service
 ; TODO Default to install for current user only (provide option to install for all users if it's trivial) Pending TS response
 
