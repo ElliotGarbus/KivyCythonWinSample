@@ -1,6 +1,6 @@
 ; Full Installation file Installes App + Service, App only or Service Only
 ; WIP see TODO at Bottom of file
-
+; todo: create code to create #defines from metadata.py; populate all directories
 
 #define MyAppName "My Application"
 #define MyAppVersion "0.0"
@@ -37,6 +37,7 @@ LicenseFile=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\LICENSE
 OutputDir=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\inno-pyinstaller
 OutputBaseFilename=full-installer
 SetupIconFile=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\myapplication\asset\cropped-cactus-512x512.ico
+UninstallDisplayIcon=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\myapplication\asset\cropped-cactus-512x512.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -58,7 +59,7 @@ Name: "service"; Description: "Windows Service Files"; Types: full service-only
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; Components: application
-Name: "registerservice"; Description:"Register Service with OS"; GroupDescription:"Register Windows Service";    Components: service  
+Name: "registerservice"; Description:"Register Service with OS"; GroupDescription:"Register Windows Service"; Components: service
 
 
 [Files]
@@ -72,21 +73,21 @@ Source: "C:\Users\ellio\PycharmProjects\KivyCythonWinSample\pyinstaller-service\
 
 
 [Icons]
-Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#AppDir}\{#MyAppExeName}"; Components: application
+Name: "{group}\{#MyAppName}"; Filename: "{app}\{#AppDir}\{#MyAppExeName}"; Components: application
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#AppDir}\{#MyAppExeName}"; Tasks: desktopicon; Components: application
-Name: "{autoprograms}\{#MySvcName} Configuration"; Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "--config-ui"; Components: service
+Name: "{group}\{#MySvcName} Configuration"; Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "--config-ui"; Components: service
 
 [Run]
 Filename: "{app}\{#AppDir}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent; Components: application
 Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "--startup delayed install"; Description: "Register the Service"; Flags: runascurrentuser postinstall; Components: service; Tasks: registerservice;
-; Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "start"; Description: "Start the Service"; Flags: runascurrentuser postinstall; Components: service; Tasks: registerservice;
+;Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "start"; Description: "Start the Service"; Flags: runascurrentuser postinstall; Components: service; Tasks: registerservice;
 ; todo: start service
 
 [UninstallRun]
 Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "stop"; Components: service
 Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "remove"; Components: service
 
-; todo create icon folder in start menu
+
 ; TODO start service
 ; TODO Default to install for current user only (provide option to install for all users if it's trivial) Pending TS response
 
