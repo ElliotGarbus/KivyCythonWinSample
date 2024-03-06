@@ -1,9 +1,9 @@
 # This file is for Secondary Objective #2
 #
 # Note: Need pip install pywin32
-# Note: Need pyinstaller --hidden-import win32timezone 
-#
-# Code is lifted from this blog post, I did not test it:
+
+
+# Code is lifted from this blog post:
 # https://metallapan.se/post/windows-service-pywin32-pyinstaller/
 
 import sys

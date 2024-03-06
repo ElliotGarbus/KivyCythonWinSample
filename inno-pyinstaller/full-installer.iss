@@ -1,21 +1,21 @@
-; Full Installation file Installes App + Service, App only or Service Only
+; Full Installation file - Installs App + Service, App only or Service Only
 ; WIP see TODO at Bottom of file
-; todo: create code to create #defines from metadata.py; populate all directories
 
-#define MyAppName "My Application"
-#define MyAppVersion "0.0"
-#define MyAppExeName "MyApplication.exe"
-#define AppDir "Application"
 
-#define MySvcName "MyService"
-#define MySvcVersion "0.0"
-#define MySvcExeName "MyService.exe"
-#define ServiceDir "Service"
+;#define MyAppName "My Application"
+;#define MyAppVersion "0.0"
+;#define MyAppExeName "MyApplication.exe"
+;#define AppDir "Application"
 
-#define StartUpMenuGroup "My Company"
-#define MyAppPublisher "My Company, Inc."
-#define MyAppURL "https://www.example.com/"
+;#define MySvcName "MyService"
+;#define MySvcVersion "0.0"
+;#define MySvcExeName "MyService.exe"
+;#define ServiceDir "Service"
 
+;#define StartUpMenuGroup "My Company"
+;#define MyAppPublisher "My Company, Inc."
+;#define MyAppURL "https://www.example.com/"
+#include "metadata.txt"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -31,18 +31,18 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\MyCompany
 DefaultGroupName={#StartUpMenuGroup}
 DisableProgramGroupPage=Yes
-LicenseFile=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\LICENSE
+LicenseFile={#ProjectPath}\LICENSE
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ; PrivilegesRequired=lowest
-OutputDir=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\inno-pyinstaller
+OutputDir={#ProjectPath}\inno-pyinstaller
 OutputBaseFilename=full-installer
-SetupIconFile=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\myapplication\asset\cropped-cactus-512x512.ico
-UninstallDisplayIcon=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\myapplication\asset\cropped-cactus-512x512.ico
+SetupIconFile={#ProjectPath}\myapplication\asset\cropped-cactus-512x512.ico
+UninstallDisplayIcon={#ProjectPath}\myapplication\asset\cropped-cactus-512x512.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
-WizardSmallImageFile=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\myapplication\asset\small_installer_image_138x140.bmp
-WizardImageFile=C:\Users\ellio\PycharmProjects\KivyCythonWinSample\myapplication\asset\big_installer_image_410x797.bmp
+WizardSmallImageFile={#ProjectPath}\myapplication\asset\small_installer_image_138x140.bmp
+WizardImageFile={#ProjectPath}\myapplication\asset\big_installer_image_410x797.bmp
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -64,12 +64,12 @@ Name: "registerservice"; Description:"Register Service with OS"; GroupDescriptio
 
 [Files]
 ; Application Files
-Source: "C:\Users\ellio\PycharmProjects\KivyCythonWinSample\inno-pyinstaller\dist\MyApplication\{#MyAppExeName}"; DestDir: "{app}\{#AppDir}"; Flags: ignoreversion; Components: application
-Source: "C:\Users\ellio\PycharmProjects\KivyCythonWinSample\inno-pyinstaller\dist\MyApplication\*"; DestDir: "{app}\{#AppDir}"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: application
+Source: "{#ProjectPath}\inno-pyinstaller\dist\MyApplication\{#MyAppExeName}"; DestDir: "{app}\{#AppDir}"; Flags: ignoreversion; Components: application
+Source: "{#ProjectPath}\inno-pyinstaller\dist\MyApplication\*"; DestDir: "{app}\{#AppDir}"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: application
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 ; Service Files
-Source: "C:\Users\ellio\PycharmProjects\KivyCythonWinSample\pyinstaller-service\dist\MyService\{#MySvcExeName}"; DestDir: "{app}\{#ServiceDir}"; Flags: ignoreversion; Components: service 
-Source: "C:\Users\ellio\PycharmProjects\KivyCythonWinSample\pyinstaller-service\dist\MyService\*"; DestDir: "{app}\{#ServiceDir}"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: service 
+Source: "{#ProjectPath}\pyinstaller-service\dist\MyService\{#MySvcExeName}"; DestDir: "{app}\{#ServiceDir}"; Flags: ignoreversion; Components: service 
+Source: "{#ProjectPath}\pyinstaller-service\dist\MyService\*"; DestDir: "{app}\{#ServiceDir}"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: service 
 
 
 [Icons]
@@ -88,7 +88,7 @@ Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "stop"; Components:
 Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "remove"; Components: service
 
 
-; TODO start service
+; TODO start service make starting the service subbordinate to registring the service
 ; TODO Default to install for current user only (provide option to install for all users if it's trivial) Pending TS response
 
 
