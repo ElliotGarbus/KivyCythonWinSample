@@ -54,13 +54,12 @@ Name: "service-only"; Description: "Service Only"
 
 [Components]
 Name: "application"; Description: "Application Files"; Types: full app-only
-Name: "service"; Description: "Windows Service Files"; Types: full service-only
-
+Name: "service"; Description: "Windows Service Files"; Types: full service-only 
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; Components: application
-Name: "registerservice"; Description:"Register Service with OS"; GroupDescription:"Register Windows Service"; Components: service
-
+Name: "registerservice"; Description:"Register Service with OS"; Components: service
+Name: "registerservice/start"; Description:"Start the Service";  
 
 [Files]
 ; Application Files
@@ -80,7 +79,7 @@ Name: "{group}\{#MySvcName} Configuration"; Filename: "{app}\{#ServiceDir}\{#MyS
 [Run]
 Filename: "{app}\{#AppDir}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent; Components: application
 Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "--startup delayed install"; Description: "Register the Service"; Flags: runascurrentuser postinstall; Components: service; Tasks: registerservice;
-;Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "start"; Description: "Start the Service"; Flags: runascurrentuser postinstall; Components: service; Tasks: registerservice;
+Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "start"; Description: "Start the Service"; Flags: runascurrentuser postinstall; Tasks: registerservice/start;
 ; todo: start service
 
 [UninstallRun]
