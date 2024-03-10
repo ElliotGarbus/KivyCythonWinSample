@@ -70,7 +70,6 @@ Source: "{#ProjectPath}\inno-pyinstaller\dist\MyApplication\*"; DestDir: "{app}\
 Source: "{#ProjectPath}\pyinstaller-service\dist\MyService\{#MySvcExeName}"; DestDir: "{app}\{#ServiceDir}"; Flags: ignoreversion; Components: service 
 Source: "{#ProjectPath}\pyinstaller-service\dist\MyService\*"; DestDir: "{app}\{#ServiceDir}"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: service 
 
-
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#AppDir}\{#MyAppExeName}"; Components: application
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#AppDir}\{#MyAppExeName}"; Tasks: desktopicon; Components: application
@@ -80,14 +79,13 @@ Name: "{group}\{#MySvcName} Configuration"; Filename: "{app}\{#ServiceDir}\{#MyS
 Filename: "{app}\{#AppDir}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent; Components: application
 Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "--startup delayed install"; Description: "Register the Service"; Flags: runascurrentuser postinstall; Components: service; Tasks: registerservice;
 Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "start"; Description: "Start the Service"; Flags: runascurrentuser postinstall; Tasks: registerservice/start;
-; todo: start service
 
 [UninstallRun]
 Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "stop"; Components: service
 Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "remove"; Components: service
 
 
-; TODO start service make starting the service subbordinate to registring the service
+; TODO confirm start service works
 ; TODO Default to install for current user only (provide option to install for all users if it's trivial) Pending TS response
 
 
