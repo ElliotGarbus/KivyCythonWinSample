@@ -31,11 +31,11 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\MyCompany
 DefaultGroupName={#StartUpMenuGroup}
 DisableProgramGroupPage=Yes
-LicenseFile={#ProjectPath}\LICENSE
+LicenseFile={#ProjectPath}\LICENSE.txt
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ; PrivilegesRequired=lowest
 OutputDir={#ProjectPath}\inno-pyinstaller
-OutputBaseFilename=full-installer
+OutputBaseFilename=my-installer
 SetupIconFile={#ProjectPath}\myapplication\asset\cropped-cactus-512x512.ico
 UninstallDisplayIcon={#ProjectPath}\myapplication\asset\cropped-cactus-512x512.ico
 Compression=lzma
@@ -81,8 +81,8 @@ Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "--startup delayed 
 Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "start"; Description: "Start the Service"; Flags: runascurrentuser postinstall; Tasks: registerservice/start;
 
 [UninstallRun]
-Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "stop"; Components: service
-Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "remove"; Components: service
+Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "stop"; Components: service; RunOnceId: "StopService"
+Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "remove"; Components: service; RunOnceId: "RemoveService"
 
 
 ; TODO confirm start service works
