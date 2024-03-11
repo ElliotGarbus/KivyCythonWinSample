@@ -15,6 +15,8 @@ service_version = '0.0'
 service_name_version = f'{service_name} v{service_version}'
 service_icon = 'asset/service_setting_512x512.ico'
 
+library_version = '0.0.0'  # used in setup.py to set the version of the library
+
 # the values below are only used by innosetup
 app_dir = 'Application'  # this is a subdirectory under the Windows programs dir, where the app is installed
 service_dir = 'Service'  # this is a subdirectory under the Windows programs dir, where the service is installed
