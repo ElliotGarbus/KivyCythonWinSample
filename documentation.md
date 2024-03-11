@@ -26,7 +26,7 @@
 python setup.py build_ext --inplace
 ```
 
-## To Package with pyinstaller
+## To Package the app with pyinstaller
 Note: you may need to turn off Windows Defender real-time protection if you get virus warning messages
 during the build.
 
@@ -58,4 +58,28 @@ data_files = [('../myapplication/asset/*.*', './asset'),
 Successfully running Pyinstaller will create 2 directories named build and dist. The dist directory contains the exe
 and the files that will be bundled with the exe.
 
+## To package the service with pyinstaller
+from the pyinstaller-service directory run:
+```commandline
+pyinstaller -y .\w11-svc.spec
+```
 
+To do a release build with the python option -OO specified, disabling asserts
+and removing docstrings run the following from the pyinstaller-service directory:
+```commandline
+python -OO  -m PyInstaller --clean -y .\w11-svc.spec
+```
+
+## Create the Windows Installer
+After the Cython code is built, and the App and Service have each been bundled with pyinstaller, the app and service can
+be packaged into a Windows installer using innosetup.
+Inno setup can be run from the GUI, open Inno Setup and select the inno-pyinstaller/full-installer.iss, the press the
+"play" button to build and run the installer. The output, a Windows Installer program, will be written to
+inno-pyinstaller/my-installer.exe
+
+optionally inno setup can be run from the commandline as:
+```commandline
+iscc "full-installer.iss"
+```
+To run from the command line the path to the iscc executable must be added to the path.
+"C:\Program Files (x86)\Inno Setup 6\"
