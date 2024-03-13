@@ -83,3 +83,11 @@ iscc "full-installer.iss"
 ```
 To run from the command line the path to the iscc executable must be added to the path.
 "C:\Program Files (x86)\Inno Setup 6\"
+
+The name of the output file is specified in the full-installer.iss script in the [Setup] section.
+
+```
+OutputBaseFilename=my-installer
+```
+
+this creates the output file: my-installer.exe in the inno-pyinstaller directory.
