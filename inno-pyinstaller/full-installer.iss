@@ -1,20 +1,6 @@
 ; Full Installation file - Installs App + Service, App only or Service Only
-; WIP see TODO at Bottom of file
 
-
-;#define MyAppName "My Application"
-;#define MyAppVersion "0.0"
-;#define MyAppExeName "MyApplication.exe"
-;#define AppDir "Application"
-
-;#define MySvcName "MyService"
-;#define MySvcVersion "0.0"
-;#define MySvcExeName "MyService.exe"
-;#define ServiceDir "Service"
-
-;#define StartUpMenuGroup "My Company"
-;#define MyAppPublisher "My Company, Inc."
-;#define MyAppURL "https://www.example.com/"
+;metadata.text is created by running "python metadata.py" from \myapplication
 #include "metadata.txt"
 
 [Setup]
@@ -85,7 +71,6 @@ Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "stop"; Components:
 Filename: "{app}\{#ServiceDir}\{#MySvcExeName}"; Parameters: "remove"; Components: service; RunOnceId: "RemoveService"
 
 
-; TODO confirm start service works
 ; TODO Default to install for current user only (provide option to install for all users if it's trivial) Pending TS response
 
 
