@@ -1,7 +1,8 @@
 # Project Template Documentation
 ## Initial Setup
 
-* Download and install python 3.12.1 from https://www.python.org/downloads/
+* Download and install python 3.11.8 from https://www.python.org/downloads/
+  * There is a compatibility issue with pywin32 v306 and python 3.12 see: https://github.com/mhammond/pywin32/issues/2155
 * Create a virtual environment.
 * Install Kivy version 2.3.0: python -m pip install "kivy[full]"
 * Install Cython 3.0.7: pip install cython
