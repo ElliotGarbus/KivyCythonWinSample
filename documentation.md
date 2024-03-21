@@ -20,6 +20,21 @@
 * Install Pyinstaller: pip install pyinstaller 
 * Download and install Inno Setup: https://jrsoftware.org/isdl.php#stable
 
+## Overview of Directories/Project Structure/Key files
+KivyCythonWinSample - main project directory
+- setup.py - used to compile Cython code
+
+    * /myapplication 
+      * asset directory - images used in application, icons, and images for installer.
+      * configstartup.py - kivy environment setup
+      * metadata.py - metadata for app and service, used by pyinstaller, creates metadata for Windows Installer
+
+    * /mylibrary - Library code and compiled Cython code
+    * /myservice - code for the windows service
+    * /pyinstaller-service
+      * w11-svc.spec - pyinstaller spec file to create MyService.exe
+
+
 ## To build the cython code
 * From the project directory run:
 ```commandline
@@ -71,6 +86,16 @@ python -OO  -m PyInstaller --clean -y .\w11-svc.spec
 ```
 
 ## Create the Windows Installer
+
+Generate the metadata for the Windows installer. Change the directory to \myapplication. 
+The metadata for the installer is created by running: 
+```commandline
+python metadata.py
+```
+This creates the file metadata.txt in the inno-pyinstaller directory. This file is imported into
+the full-installer.iss file.
+
+
 After the Cython code is built, and the App and Service have each been bundled with pyinstaller, the app and service can
 be packaged into a Windows installer using innosetup.
 Inno setup can be run from the GUI, open Inno Setup and select the inno-pyinstaller/full-installer.iss, the press the
